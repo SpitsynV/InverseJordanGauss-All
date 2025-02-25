@@ -89,21 +89,14 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
 
     }
 
-    // At this point, A has been transformed into the identity matrix,
-    // but note that its columns have been swapped according to columnOrder.
-    // Therefore, the computed inv is "column-permuted" relative to the true inverse.
-    // --- Undo Column Swaps on the Inverse ---
-    // Create finalInv by reordering the columns of inv.
-    /*std::vector<std::vector<double>> finalInv(n, std::vector<double>(n, 0.0)); //This can be put onto A place for memory safe purposes
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            finalInv[i][j] = inv[columnOrder[i]][j];
-        }
+    //find inverse permutations
+    std::vector<double> undo(n);
+    for(int q=0;q<n;q++){
+        undo[columnOrder[q]]=q;
     }
-*/
     for (int i=0;i<n;i++) {
         for (int j=0;j<n;j++)
-            A[i][j]=inv[columnOrder[i]][j];
+            A[i][j]=inv[undo[i]][j];
     }
     // Replace inv with the correctly ordered inverse.
     inv = A;
