@@ -1,4 +1,3 @@
-//основная программа решает систему а не обращает матрицу!!  :(
 #include <iostream>
 #include <chrono>
 #include "matrix.h"
@@ -23,7 +22,6 @@ int main(int argc, char* argv[]) {
         std::cerr << "Error:Number of values to be output is greater than the matrix dimension " << std::endl;
         return 1;
     }
- //------------дальше нужны корректировки-----------//
     int err = 0;
     std::vector<std::vector<double>> A;
     std::vector<std::vector<double>> inv;

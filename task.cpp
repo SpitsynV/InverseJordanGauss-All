@@ -1,5 +1,3 @@
-
-//Attetion to makefile
 #include "task.h"
 
 // This function computes the inverse of an n×n matrix A using
@@ -17,14 +15,14 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
     for (int i = 0; i < n; ++i)
         inv[i][i] = 1.0;
 
-    // Initialize columnOrder: it tracks how columns are swapped.
+    // Initialize columnOrder:
     std::vector<int> columnOrder(n);
     for (int i = 0; i < n; ++i)
         columnOrder[i] = i;
 
     const double tol = 1e-16; // Tolerance for singularity
 
-    // Process each pivot (step) from 0 to n-1.
+    
     for (int step = 0; step < n; ++step) {
         // --- Pivot Search: find maximal element in submatrix A[step..n-1][step..n-1] ---
         int pivotRow = step, pivotCol = step;
@@ -39,21 +37,19 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
                 }
             }
         }
-        // Check for singularity.
+        
         if (maxVal < tol){
             throw std::runtime_error("Matrix is close to singular.");
             return 0;
         }
 
         // --- Swap Rows ---
-        // Swap the current row with the row of the maximal element in A and apply the same swap to inv.
         if (pivotRow != step) {
             std::swap(A[step], A[pivotRow]);
             std::swap(inv[step], inv[pivotRow]);
         }
 
         // --- Swap Columns ---
-        // Swap the current column with the column of the maximal element in A.
         // (We do not swap columns in inv – instead, we record the swap in columnOrder.)
         if (pivotCol != step) {
             for (int i = 0; i < n; ++i) {
@@ -63,7 +59,6 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
         }
 
         // --- Normalize Pivot Row ---
-        // Make the pivot element equal to 1 by dividing the entire pivot row (for A and inv)
         double pivotVal = A[step][step];
         for (int j = step; j < n; ++j) {
             A[step][j] /= pivotVal;
@@ -73,7 +68,6 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
         }
 
         // --- Eliminate all other rows ---
-        // For every row (except the pivot row), eliminate the entry in the pivot column.
         for (int i = 0; i < n; ++i) {
             if (i == step)
                 continue;
@@ -98,6 +92,7 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
         for (int j=0;j<n;j++)
             A[i][j]=inv[undo[i]][j];
     }
+
     // Replace inv with the correctly ordered inverse.
     inv = A;
 
