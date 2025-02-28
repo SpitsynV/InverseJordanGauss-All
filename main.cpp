@@ -25,6 +25,8 @@ int main(int argc, char* argv[]) {
     int err = 0;
     std::vector<std::vector<double>> A;
     std::vector<std::vector<double>> inv;
+    std::vector<int> columnOrder(n);
+    std::vector<int> undo(n);
     A.resize(n, std::vector<double>(n));
     inv.resize(n, std::vector<double>(n));
 
@@ -48,7 +50,7 @@ int main(int argc, char* argv[]) {
     std::chrono::duration<double> elapsed;
     try {
         auto start = std::chrono::high_resolution_clock::now();
-        err = gaussJordanInverse(A, inv);
+        err = gaussJordanInverse(A, inv,columnOrder,undo);
         auto end = std::chrono::high_resolution_clock::now();
         elapsed = end - start;
         std::cout << "Inverse matrix:\n";

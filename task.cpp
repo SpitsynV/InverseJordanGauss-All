@@ -5,7 +5,7 @@
 // Because we perform column swaps on A,
 // we track these swaps via columnOrder and then reassemble the inverse at the end.
 int gaussJordanInverse(std::vector<std::vector<double>>& A,
-                                   std::vector<std::vector<double>>& inv) {
+                                   std::vector<std::vector<double>>& inv,std::vector<int> &columnOrder, std::vector<int> &undo) {
     int n = A.size();
     if (n == 0 || A[0].size() != n)
         throw std::invalid_argument("Matrix A must be square.");
@@ -15,12 +15,11 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
     for (int i = 0; i < n; ++i)
         inv[i][i] = 1.0;
 
-    // Initialize columnOrder:
-    std::vector<int> columnOrder(n);
+    // Initialize columnOrder
     for (int i = 0; i < n; ++i)
         columnOrder[i] = i;
 
-    const double tol = 1e-16; // Tolerance for singularity
+    const double tol = 1e-19; // Tolerance for singularity
 
     
     for (int step = 0; step < n; ++step) {
@@ -84,7 +83,6 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
     }
 
     //find inverse permutations
-    std::vector<double> undo(n);
     for(int q=0;q<n;q++){
         undo[columnOrder[q]]=q;
     }
