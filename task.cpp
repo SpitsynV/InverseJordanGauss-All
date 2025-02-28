@@ -1,5 +1,5 @@
 #include "task.h"
-
+//Result=A
 // This function computes the inverse of an n×n matrix A using
 // Gauss-Jordan elimination with complete pivoting (global maximal element search).
 // Because we perform column swaps on A,
@@ -90,9 +90,6 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
         for (int j=0;j<n;j++)
             A[i][j]=inv[undo[i]][j];
     }
-
-    // Replace inv with the correctly ordered inverse.
-    inv = A;
 
     return 1;
 }

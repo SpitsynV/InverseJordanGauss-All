@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
         auto end = std::chrono::high_resolution_clock::now();
         elapsed = end - start;
         std::cout << "Inverse matrix:\n";
-        printMatrix(inv,m);
+        printMatrix(A,m);
 
     }
     catch (const std::exception& ex) {
@@ -68,9 +68,9 @@ int main(int argc, char* argv[]) {
 
 
     if(k==0){
-        readMatrixFromFile(filename, A, n);
+        readMatrixFromFile(filename, inv, n);
     }else{
-        initializeMatrix(A, k, n);
+        initializeMatrix(inv, k, n);
     }
     double normError = 0.0;
     normError=getNorm(A,inv);
