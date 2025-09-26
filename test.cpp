@@ -9,12 +9,11 @@
 std::vector<std::vector<double>> generate_random_matrix(int n) {
     std::vector<std::vector<double>> matrix(n, std::vector<double>(n));
 
-    // Initialize the random number generator
+    // Initialize
     std::srand(std::time(0));
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            // Generate a floating-point number between -1000 and 1000
             matrix[i][j] = static_cast<double>(std::rand()) / RAND_MAX * 2000.0 - 1000.0;
         }
     }
@@ -74,7 +73,7 @@ void write_matrix_to_file(const std::vector<std::vector<double>>& matrix, int n,
         file << std::endl;
     }
 
-    file.close();  // Close the file
+    file.close();
     std::cout << "Matrix written to " << filename << std::endl;
 }
 
