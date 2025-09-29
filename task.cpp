@@ -37,7 +37,8 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
             }
         }
         
-        if (maxVal < tol){
+        if (maxVal < tol){ //Absolute value stop condition
+                            //Alternatively use maxVal<tol*Norm(A,n)//relative stop condition
             throw std::runtime_error("Matrix is close to singular.");
             return 0;
         }
