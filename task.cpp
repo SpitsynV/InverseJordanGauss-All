@@ -23,7 +23,7 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
 
     
     for (int step = 0; step < n; ++step) {
-        // --- Pivot Search: find maximal element in submatrix A[step..n-1][step..n-1] ---
+        // Pivot Search: find maximal element in submatrix A[step..n-1][step..n-1]
         int pivotRow = step, pivotCol = step;
         double maxVal = std::fabs(A[step][step]);
         for (int i = step; i < n; ++i) {
@@ -42,13 +42,13 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
             return 0;
         }
 
-        // --- Swap Rows ---
+        // Swap Rows
         if (pivotRow != step) {
             std::swap(A[step], A[pivotRow]);
             std::swap(inv[step], inv[pivotRow]);
         }
 
-        // --- Swap Columns ---
+        // Swap Columns
         // (We do not swap columns in inv – instead, we record the swap in columnOrder.)
         if (pivotCol != step) {
             for (int i = 0; i < n; ++i) {
@@ -57,7 +57,7 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
             std::swap(columnOrder[step], columnOrder[pivotCol]);
         }
 
-        // --- Normalize Pivot Row ---
+        // Normalize Pivot Row
         double pivotVal = A[step][step];
         for (int j = step; j < n; ++j) {
             A[step][j] /= pivotVal;
@@ -66,7 +66,7 @@ int gaussJordanInverse(std::vector<std::vector<double>>& A,
             inv[step][columnOrder[j]] /= pivotVal;
         }
 
-        // --- Eliminate all other rows ---
+        // Eliminate all other rows
         for (int i = 0; i < n; ++i) {
             if (i == step)
                 continue;

@@ -53,16 +53,16 @@ int main(int argc, char* argv[]) {
         err = gaussJordanInverse(A, inv,columnOrder,undo);
         auto end = std::chrono::high_resolution_clock::now();
         elapsed = end - start;
-        std::cout << "Inverse matrix:\n";
+        std::cout << "Inverse matrix:" << std::endl;;
         printMatrix(A,m);
 
     }
     catch (const std::exception& ex) {
-        std::cerr << "Error: " << ex.what() << "\n";
+        std::cerr << "Error: " << ex.what() << std::endl;
         return 0;
     }
     // time
-    std::cout << "Time to solve: " << elapsed.count() << " ticks" << std::endl;
+    std::cout << "Time to solve: " << elapsed.count() << " seconds" << std::endl;
 
 
 

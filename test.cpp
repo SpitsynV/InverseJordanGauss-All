@@ -5,12 +5,11 @@
 #include <iomanip>
 #include <fstream>
 
-// Function to generate a random matrix with floating-point values between -1000 and 1000
+// Function to generate a random matrix with values between -1000 and 1000
 std::vector<std::vector<double>> generate_random_matrix(int n) {
     std::vector<std::vector<double>> matrix(n, std::vector<double>(n));
 
-    // Initialize
-    std::srand(std::time(0));
+    
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -52,23 +51,22 @@ double determinant(const std::vector<std::vector<double>>& matrix, int n) {
     return det;
 }
 
-// Function to check if the matrix is invertible
 bool is_invertible(const std::vector<std::vector<double>>& matrix, int n) {
     return determinant(matrix, n) != 0;
 }
 
-// Function to write the matrix to a file
+
 void write_matrix_to_file(const std::vector<std::vector<double>>& matrix, int n, const std::string& filename) {
     std::ofstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file!" << std::endl;
-        return;
+        
     }
 
     // Write matrix to file
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            file << std::setw(10) << std::fixed << std::setprecision(4) << matrix[i][j] << " ";  // Formatting with 4 decimal places
+            file << std::setw(10) << std::fixed << std::setprecision(4) << matrix[i][j] << " "; 
         }
         file << std::endl;
     }
@@ -80,7 +78,7 @@ void write_matrix_to_file(const std::vector<std::vector<double>>& matrix, int n,
 int main(int argc, char* argv[]) {
     int n;
     n=std::stoi(argv[1]);
-
+    std::srand(std::time(0));
     std::vector<std::vector<double>> matrix;
 
     // Generate an invertible matrix
