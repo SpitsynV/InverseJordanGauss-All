@@ -10,10 +10,10 @@
 
 
 
-int readMatrixFromFile(const std::string& filename, std::vector<std::vector<double>>& A, int n);
-void printMatrix(const std::vector<std::vector<double>>& A, int m);
+int readMatrixFromFile(const std::string& filename, std::vector<std::vector<double>>& A, const int n);
+void printMatrix(const std::vector<std::vector<double>>& A, const int m);
 void printVector(const std::vector<double>& vec, int m);
-double f(int k, int n, int i, int j);
-void initializeMatrix(std::vector<std::vector<double>>& A, int k, int n);
+inline double f(const int k, const int n,const  int i,const  int j);
+void initializeMatrix(std::vector<std::vector<double>>& A, const int k, const int n);
 
 #endif

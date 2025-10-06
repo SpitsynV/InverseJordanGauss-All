@@ -1,5 +1,5 @@
 #include "functions.h"
-double getNorm(std::vector<std::vector<double>> a, std::vector<std::vector<double>> x)
+double getNorm(const std::vector<std::vector<double>> a, const std::vector<std::vector<double>> x)
 {
     int n = a.size();
     double el = 0.0, nm = 0.0;

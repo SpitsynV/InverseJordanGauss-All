@@ -1,6 +1,6 @@
 #include "matrix.h"
 
-int readMatrixFromFile(const std::string& filename, std::vector<std::vector<double>>& A, int n) {
+int readMatrixFromFile(const std::string& filename, std::vector<std::vector<double>>& A, const int n) {
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -20,7 +20,7 @@ int readMatrixFromFile(const std::string& filename, std::vector<std::vector<doub
     return 1;
 }
 
-void printMatrix(const std::vector<std::vector<double>>& A, int m) {
+void printMatrix(const std::vector<std::vector<double>>& A, const int m) {
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < m; ++j) {
             std::cout << std::setw(10) << std::setprecision(3) << std::scientific << A[i][j] << " ";
@@ -29,14 +29,14 @@ void printMatrix(const std::vector<std::vector<double>>& A, int m) {
     }
 }
 
-void printVector(const std::vector<double>& vec, int m) {
+void printVector(const std::vector<double>& vec, const int m) {
     for (int i = 0; i < m; ++i) {
         std::cout << std::setw(10) << std::setprecision(3) << std::scientific << vec[i] << " ";
     }
     std::cout << std::endl;
 }
 
-double f(int k, int n, int i, int j) {
+inline double f(const int k, const int n, const int i, const int j) {
     switch (k) {
     case 1:
         return n - std::max(i, j) + 1;
@@ -50,7 +50,7 @@ double f(int k, int n, int i, int j) {
         throw std::invalid_argument("Error: Wrong formula number");
     }
 }
-void initializeMatrix(std::vector<std::vector<double>>& A, int k, int n){
+void initializeMatrix(std::vector<std::vector<double>>& A,const int k, const int n){
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
             A[i][j]=f(k,n,i+1,j+1);//initially enumerate from 1 to n
